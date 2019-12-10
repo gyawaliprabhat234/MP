@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MASTERPROJECTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="MENU_TYPE">
+          <Key>
+            <PropertyRef Name="MENU_TYPE_ID" />
+          </Key>
+          <Property Name="MENU_TYPE_ID" Type="tinyint" Nullable="false" />
+          <Property Name="MENU_TYPE_NAME" Type="varchar" MaxLength="50" />
+          <Property Name="ISVISIBLE" Type="bit" />
+        </EntityType>
+        <EntityType Name="SEC_MENU">
+          <Key>
+            <PropertyRef Name="MENU_ID" />
+          </Key>
+          <Property Name="MENU_ID" Type="smallint" Nullable="false" />
+          <Property Name="MENU_TEXT" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TOOL_TIP" Type="nvarchar" MaxLength="50" />
+          <Property Name="ORDER_NO" Type="smallint" Nullable="false" />
+          <Property Name="REF_URL" Type="varchar" MaxLength="200" />
+          <Property Name="PARENT_ID" Type="smallint" />
+          <Property Name="HAS_CHILD" Type="bit" Nullable="false" />
+          <Property Name="ICON_IMAGES_LINK" Type="varchar" MaxLength="50" />
+          <Property Name="MENU_TYPE_ID" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_SEC_MENU_TYPE_ID">
+          <End Role="MENU_TYPE" Type="Self.MENU_TYPE" Multiplicity="1" />
+          <End Role="SEC_MENU" Type="Self.SEC_MENU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MENU_TYPE">
+              <PropertyRef Name="MENU_TYPE_ID" />
+            </Principal>
+            <Dependent Role="SEC_MENU">
+              <PropertyRef Name="MENU_TYPE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MASTERPROJECTModelStoreContainer">
+          <EntitySet Name="MENU_TYPE" EntityType="Self.MENU_TYPE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SEC_MENU" EntityType="Self.SEC_MENU" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_SEC_MENU_TYPE_ID" Association="Self.FK_SEC_MENU_TYPE_ID">
+            <End Role="MENU_TYPE" EntitySet="MENU_TYPE" />
+            <End Role="SEC_MENU" EntitySet="SEC_MENU" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MASTERPROJECTModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="MENU_TYPE">
+          <Key>
+            <PropertyRef Name="MENU_TYPE_ID" />
+          </Key>
+          <Property Name="MENU_TYPE_ID" Type="Byte" Nullable="false" />
+          <Property Name="MENU_TYPE_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ISVISIBLE" Type="Boolean" />
+          <NavigationProperty Name="SEC_MENU" Relationship="Self.FK_SEC_MENU_TYPE_ID" FromRole="MENU_TYPE" ToRole="SEC_MENU" />
+        </EntityType>
+        <EntityType Name="SEC_MENU">
+          <Key>
+            <PropertyRef Name="MENU_ID" />
+          </Key>
+          <Property Name="MENU_ID" Type="Int16" Nullable="false" />
+          <Property Name="MENU_TEXT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TOOL_TIP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ORDER_NO" Type="Int16" Nullable="false" />
+          <Property Name="REF_URL" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="PARENT_ID" Type="Int16" />
+          <Property Name="HAS_CHILD" Type="Boolean" Nullable="false" />
+          <Property Name="ICON_IMAGES_LINK" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MENU_TYPE_ID" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="MENU_TYPE" Relationship="Self.FK_SEC_MENU_TYPE_ID" FromRole="SEC_MENU" ToRole="MENU_TYPE" />
+        </EntityType>
+        <Association Name="FK_SEC_MENU_TYPE_ID">
+          <End Role="MENU_TYPE" Type="Self.MENU_TYPE" Multiplicity="1" />
+          <End Role="SEC_MENU" Type="Self.SEC_MENU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MENU_TYPE">
+              <PropertyRef Name="MENU_TYPE_ID" />
+            </Principal>
+            <Dependent Role="SEC_MENU">
+              <PropertyRef Name="MENU_TYPE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MASTERPROJECTEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="MENU_TYPE" EntityType="Self.MENU_TYPE" />
+          <EntitySet Name="SEC_MENU" EntityType="Self.SEC_MENU" />
+          <AssociationSet Name="FK_SEC_MENU_TYPE_ID" Association="Self.FK_SEC_MENU_TYPE_ID">
+            <End Role="MENU_TYPE" EntitySet="MENU_TYPE" />
+            <End Role="SEC_MENU" EntitySet="SEC_MENU" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MASTERPROJECTModelStoreContainer" CdmEntityContainer="MASTERPROJECTEntities">
+          <EntitySetMapping Name="MENU_TYPE">
+            <EntityTypeMapping TypeName="MASTERPROJECTModel.MENU_TYPE">
+              <MappingFragment StoreEntitySet="MENU_TYPE">
+                <ScalarProperty Name="MENU_TYPE_ID" ColumnName="MENU_TYPE_ID" />
+                <ScalarProperty Name="MENU_TYPE_NAME" ColumnName="MENU_TYPE_NAME" />
+                <ScalarProperty Name="ISVISIBLE" ColumnName="ISVISIBLE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SEC_MENU">
+            <EntityTypeMapping TypeName="MASTERPROJECTModel.SEC_MENU">
+              <MappingFragment StoreEntitySet="SEC_MENU">
+                <ScalarProperty Name="MENU_ID" ColumnName="MENU_ID" />
+                <ScalarProperty Name="MENU_TEXT" ColumnName="MENU_TEXT" />
+                <ScalarProperty Name="TOOL_TIP" ColumnName="TOOL_TIP" />
+                <ScalarProperty Name="ORDER_NO" ColumnName="ORDER_NO" />
+                <ScalarProperty Name="REF_URL" ColumnName="REF_URL" />
+                <ScalarProperty Name="PARENT_ID" ColumnName="PARENT_ID" />
+                <ScalarProperty Name="HAS_CHILD" ColumnName="HAS_CHILD" />
+                <ScalarProperty Name="ICON_IMAGES_LINK" ColumnName="ICON_IMAGES_LINK" />
+                <ScalarProperty Name="MENU_TYPE_ID" ColumnName="MENU_TYPE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

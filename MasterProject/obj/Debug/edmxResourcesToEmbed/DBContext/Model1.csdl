@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MASTERPROJECTModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="MENU_TYPE">
+    <Key>
+      <PropertyRef Name="MENU_TYPE_ID" />
+    </Key>
+    <Property Name="MENU_TYPE_ID" Type="Byte" Nullable="false" />
+    <Property Name="MENU_TYPE_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ISVISIBLE" Type="Boolean" />
+    <NavigationProperty Name="SEC_MENU" Relationship="Self.FK_SEC_MENU_TYPE_ID" FromRole="MENU_TYPE" ToRole="SEC_MENU" />
+  </EntityType>
+  <EntityType Name="SEC_MENU">
+    <Key>
+      <PropertyRef Name="MENU_ID" />
+    </Key>
+    <Property Name="MENU_ID" Type="Int16" Nullable="false" />
+    <Property Name="MENU_TEXT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TOOL_TIP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ORDER_NO" Type="Int16" Nullable="false" />
+    <Property Name="REF_URL" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="PARENT_ID" Type="Int16" />
+    <Property Name="HAS_CHILD" Type="Boolean" Nullable="false" />
+    <Property Name="ICON_IMAGES_LINK" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MENU_TYPE_ID" Type="Byte" Nullable="false" />
+    <NavigationProperty Name="MENU_TYPE" Relationship="Self.FK_SEC_MENU_TYPE_ID" FromRole="SEC_MENU" ToRole="MENU_TYPE" />
+  </EntityType>
+  <Association Name="FK_SEC_MENU_TYPE_ID">
+    <End Role="MENU_TYPE" Type="Self.MENU_TYPE" Multiplicity="1" />
+    <End Role="SEC_MENU" Type="Self.SEC_MENU" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MENU_TYPE">
+        <PropertyRef Name="MENU_TYPE_ID" />
+      </Principal>
+      <Dependent Role="SEC_MENU">
+        <PropertyRef Name="MENU_TYPE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MASTERPROJECTEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="MENU_TYPE" EntityType="Self.MENU_TYPE" />
+    <EntitySet Name="SEC_MENU" EntityType="Self.SEC_MENU" />
+    <AssociationSet Name="FK_SEC_MENU_TYPE_ID" Association="Self.FK_SEC_MENU_TYPE_ID">
+      <End Role="MENU_TYPE" EntitySet="MENU_TYPE" />
+      <End Role="SEC_MENU" EntitySet="SEC_MENU" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

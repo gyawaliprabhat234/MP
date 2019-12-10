@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MASTERPROJECTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="MENU_TYPE">
+    <Key>
+      <PropertyRef Name="MENU_TYPE_ID" />
+    </Key>
+    <Property Name="MENU_TYPE_ID" Type="tinyint" Nullable="false" />
+    <Property Name="MENU_TYPE_NAME" Type="varchar" MaxLength="50" />
+    <Property Name="ISVISIBLE" Type="bit" />
+  </EntityType>
+  <EntityType Name="SEC_MENU">
+    <Key>
+      <PropertyRef Name="MENU_ID" />
+    </Key>
+    <Property Name="MENU_ID" Type="smallint" Nullable="false" />
+    <Property Name="MENU_TEXT" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="TOOL_TIP" Type="nvarchar" MaxLength="50" />
+    <Property Name="ORDER_NO" Type="smallint" Nullable="false" />
+    <Property Name="REF_URL" Type="varchar" MaxLength="200" />
+    <Property Name="PARENT_ID" Type="smallint" />
+    <Property Name="HAS_CHILD" Type="bit" Nullable="false" />
+    <Property Name="ICON_IMAGES_LINK" Type="varchar" MaxLength="50" />
+    <Property Name="MENU_TYPE_ID" Type="tinyint" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_SEC_MENU_TYPE_ID">
+    <End Role="MENU_TYPE" Type="Self.MENU_TYPE" Multiplicity="1" />
+    <End Role="SEC_MENU" Type="Self.SEC_MENU" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MENU_TYPE">
+        <PropertyRef Name="MENU_TYPE_ID" />
+      </Principal>
+      <Dependent Role="SEC_MENU">
+        <PropertyRef Name="MENU_TYPE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MASTERPROJECTModelStoreContainer">
+    <EntitySet Name="MENU_TYPE" EntityType="Self.MENU_TYPE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SEC_MENU" EntityType="Self.SEC_MENU" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_SEC_MENU_TYPE_ID" Association="Self.FK_SEC_MENU_TYPE_ID">
+      <End Role="MENU_TYPE" EntitySet="MENU_TYPE" />
+      <End Role="SEC_MENU" EntitySet="SEC_MENU" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

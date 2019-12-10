@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MASTERPROJECTModelStoreContainer" CdmEntityContainer="MASTERPROJECTEntities">
+    <EntitySetMapping Name="MENU_TYPE">
+      <EntityTypeMapping TypeName="MASTERPROJECTModel.MENU_TYPE">
+        <MappingFragment StoreEntitySet="MENU_TYPE">
+          <ScalarProperty Name="MENU_TYPE_ID" ColumnName="MENU_TYPE_ID" />
+          <ScalarProperty Name="MENU_TYPE_NAME" ColumnName="MENU_TYPE_NAME" />
+          <ScalarProperty Name="ISVISIBLE" ColumnName="ISVISIBLE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SEC_MENU">
+      <EntityTypeMapping TypeName="MASTERPROJECTModel.SEC_MENU">
+        <MappingFragment StoreEntitySet="SEC_MENU">
+          <ScalarProperty Name="MENU_ID" ColumnName="MENU_ID" />
+          <ScalarProperty Name="MENU_TEXT" ColumnName="MENU_TEXT" />
+          <ScalarProperty Name="TOOL_TIP" ColumnName="TOOL_TIP" />
+          <ScalarProperty Name="ORDER_NO" ColumnName="ORDER_NO" />
+          <ScalarProperty Name="REF_URL" ColumnName="REF_URL" />
+          <ScalarProperty Name="PARENT_ID" ColumnName="PARENT_ID" />
+          <ScalarProperty Name="HAS_CHILD" ColumnName="HAS_CHILD" />
+          <ScalarProperty Name="ICON_IMAGES_LINK" ColumnName="ICON_IMAGES_LINK" />
+          <ScalarProperty Name="MENU_TYPE_ID" ColumnName="MENU_TYPE_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
