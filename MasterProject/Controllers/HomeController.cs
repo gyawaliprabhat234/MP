@@ -106,6 +106,35 @@ namespace MasterProject.Controllers
             }
                 return View();
         }
+USE [MASTERPROJECT]
+GO
+INSERT [dbo].[MENU_TYPE] ([MENU_TYPE_ID], [MENU_TYPE_NAME], [ISVISIBLE]) VALUES (1, N'Brand-Label', 1)
+GO
+INSERT [dbo].[MENU_TYPE] ([MENU_TYPE_ID], [MENU_TYPE_NAME], [ISVISIBLE]) VALUES (2, N'User-Label', 1)
+GO
+INSERT [dbo].[MENU_TYPE] ([MENU_TYPE_ID], [MENU_TYPE_NAME], [ISVISIBLE]) VALUES (3, N'Menu-Label', 1)
+GO
+INSERT [dbo].[MENU_TYPE] ([MENU_TYPE_ID], [MENU_TYPE_NAME], [ISVISIBLE]) VALUES (4, N'Control-Label', 1)
+GO
+INSERT [dbo].[SEC_MENU] ([MENU_ID], [MENU_TEXT], [TOOL_TIP], [ORDER_NO], [REF_URL], [PARENT_ID], [HAS_CHILD], [ICON_IMAGES_LINK], [MENU_TYPE_ID]) VALUES (1, N'Admin LTE', NULL, 1, N'https://localhost:44300/', NULL, 0, N'ref/dist/img/AdminLTELogo.png', 1)
+GO
+INSERT [dbo].[SEC_MENU] ([MENU_ID], [MENU_TEXT], [TOOL_TIP], [ORDER_NO], [REF_URL], [PARENT_ID], [HAS_CHILD], [ICON_IMAGES_LINK], [MENU_TYPE_ID]) VALUES (2, N'Prabhat Gyawali', NULL, 1, NULL, NULL, 0, N'ref/dist/img/user2-160x160.jpg', 2)
+GO
+INSERT [dbo].[SEC_MENU] ([MENU_ID], [MENU_TEXT], [TOOL_TIP], [ORDER_NO], [REF_URL], [PARENT_ID], [HAS_CHILD], [ICON_IMAGES_LINK], [MENU_TYPE_ID]) VALUES (3, N'DashBoard', NULL, 1, NULL, NULL, 1, N'fas fa-tachometer-alt', 3)
+GO
+INSERT [dbo].[SEC_MENU] ([MENU_ID], [MENU_TEXT], [TOOL_TIP], [ORDER_NO], [REF_URL], [PARENT_ID], [HAS_CHILD], [ICON_IMAGES_LINK], [MENU_TYPE_ID]) VALUES (4, N'DashBoard 1', NULL, 1, NULL, 3, 0, N'far fa-circle', 3)
+GO
+INSERT [dbo].[SEC_MENU] ([MENU_ID], [MENU_TEXT], [TOOL_TIP], [ORDER_NO], [REF_URL], [PARENT_ID], [HAS_CHILD], [ICON_IMAGES_LINK], [MENU_TYPE_ID]) VALUES (5, N'DashBoard 2', N'', 2, NULL, 3, 0, N'far fa-circle', 3)
+GO
+INSERT [dbo].[SEC_MENU] ([MENU_ID], [MENU_TEXT], [TOOL_TIP], [ORDER_NO], [REF_URL], [PARENT_ID], [HAS_CHILD], [ICON_IMAGES_LINK], [MENU_TYPE_ID]) VALUES (6, N'DashBoard 3', N'', 3, NULL, 3, 1, N'far fa-circle', 3)
+GO
+INSERT [dbo].[SEC_MENU] ([MENU_ID], [MENU_TEXT], [TOOL_TIP], [ORDER_NO], [REF_URL], [PARENT_ID], [HAS_CHILD], [ICON_IMAGES_LINK], [MENU_TYPE_ID]) VALUES (7, N'Sub 1', N'', 2, NULL, 6, 0, N'far fa-circle', 3)
+GO
+INSERT [dbo].[SEC_MENU] ([MENU_ID], [MENU_TEXT], [TOOL_TIP], [ORDER_NO], [REF_URL], [PARENT_ID], [HAS_CHILD], [ICON_IMAGES_LINK], [MENU_TYPE_ID]) VALUES (8, N'Sub 2', N'', 1, NULL, 6, 0, N'far fa-circle', 3)
+GO
+INSERT [dbo].[SEC_MENU] ([MENU_ID], [MENU_TEXT], [TOOL_TIP], [ORDER_NO], [REF_URL], [PARENT_ID], [HAS_CHILD], [ICON_IMAGES_LINK], [MENU_TYPE_ID]) VALUES (9, N'Sub 3', N'', 3, NULL, 6, 0, N'far fa-circle', 3)
+GO
+
 
         public ActionResult About()
         {
