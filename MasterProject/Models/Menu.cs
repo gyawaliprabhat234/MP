@@ -18,8 +18,7 @@ namespace MasterProject.Models
         public string MENU_TYPE_NAME { get; set; }
         public string ICON_IMAGES_LINK { get; set; }
         public short LEVEL { get; set; }
-        public Menu_Type Menu_Type { get; set; }
-        public List<Menu> SubMenu { get; set; }
+        public Menu_Type Menu_Type { get; set; }   
 
        
     }
